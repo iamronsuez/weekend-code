@@ -2,6 +2,27 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+const TodoList = ({children}) => {
+  return (
+    <ul>
+      {children}
+    </ul>
+  )
+}
+
+const TodoItem = ({text, checked}) => {
+  return (
+    <li>
+      <div>
+          <span>{text}</span>
+          <input type="checkbox" checked={checked}/>
+      </div>
+    </li>
+  )
+}
+
+
 class App extends Component {
   render() {
     return (
@@ -19,6 +40,13 @@ class App extends Component {
           >
             Learn React -> llovizna labs
           </a>
+
+          <TodoList>
+              <TodoItem text="crear app de react" checked/>
+              <TodoItem text="crear repo de github" checked/>
+              <TodoItem text="subir repo a netlify"/>
+              <TodoItem text="subir un cambio al repo y ver update en netlify"/>
+          </TodoList>
         </header>
       </div>
     );
