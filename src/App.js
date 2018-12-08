@@ -24,7 +24,7 @@ const TodoItem = ({text, checked}) => {
 
 const Form = () => {
   return (
-    <form netlify>
+    <form name="contact" netlify>
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
         <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
