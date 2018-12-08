@@ -1,4 +1,4 @@
-import fetch from "node-fetch"
+import fetch from 'node-fetch'
 import {get, upperCase} from 'lodash'
 
 const API_ENDPOINT = "https://localbitcoins.com/bitcoinaverage/ticker-all-currencies/"
