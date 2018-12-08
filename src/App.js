@@ -60,8 +60,11 @@ class App extends Component {
           >
             Learn React -> llovizna labs
           </a>
+        </header>
 
-          <form name="contact" method="POST" netlify>
+        <div>
+
+        <form name="contact" method="POST" netlify>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
@@ -77,20 +80,8 @@ class App extends Component {
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>
-        </header>
 
-        {/* <div>
-
-               <TodoList>
-                <TodoItem text="crear app de react" checked/>
-                <TodoItem text="crear repo de github" checked/>
-                <TodoItem text="subir repo a netlify" checked/>
-                <TodoItem text="subir un cambio al repo y ver update en netlify" checked/>
-                <TodoItem text="Hacer form en netlify"/>              
-              </TodoList>
-
-
-        </div> */}
+        </div>
       </div>
     );
   }
