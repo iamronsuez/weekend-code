@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {get} from 'lodash'
 
 const Price = ({price}) => <h4>{price}</h4>
 
@@ -28,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-            <Price price={JSON.stringify(data, null, 2)} />
+            <Price price={JSON.stringify(get(data, 'relation', 0.0), null, 2)} />
         </div>
       </div>
     );
