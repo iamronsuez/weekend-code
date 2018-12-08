@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-            <Price price={JSON.stringify(get(data, 'relation', 0.0), null, 2)} />
+            <Price price={JSON.stringify(get(data, 'currencies.relation', 0.0), null, 2)} />
         </div>
       </div>
     );
