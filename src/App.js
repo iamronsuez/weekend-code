@@ -28,7 +28,7 @@ const Form = () => {
 
      <div className="form-group">
         <label htmlFor="exampleInputPassword1">Nombre</label>
-        <input name="input"  type="password" className="form-control" id="exampleInputPassword1" placeholder="name" />
+        <input name="name"  type="input" className="form-control" id="exampleInputPassword1" placeholder="name" />
       </div>
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
