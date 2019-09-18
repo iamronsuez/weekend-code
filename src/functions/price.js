@@ -26,10 +26,10 @@ exports.handler = async (event, context) => {
       const baseData =  (b, data) => getCurrencyData(get(data,upperCase(b), 'USD'), 'rates.last')
       const dividerData = (d, data) => getCurrencyData(get(data, upperCase(d), 'USD'),'rates.last')
 
-      const references = map(currencies, ({base, divider}) => ({
+      const references = (response) =>  map(currencies, ({base, divider}) => ({
         rel: getRelation(baseData(base, response), baseData(divider, response)), 
-        base, 
-        divider
+        base: baseData(base, response), 
+        divider: baseData(divider, response)
       }))
 
       try {
@@ -41,7 +41,7 @@ exports.handler = async (event, context) => {
               divider: dividerData(d, response),
               relation: getRelation(baseData(b, response), baseData(d, response))
             },
-            references
+            references: getReferencies(response)
           }, null, 2)
         }
       } catch (error) {
