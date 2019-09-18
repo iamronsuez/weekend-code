@@ -19800,11 +19800,11 @@ function () {
               }];
 
               var baseData = function baseData(b, data) {
-                return getCurrencyData(get(data, upperCase(b), 'USD'), 'rates.last');
+                return getCurrencyData(get(data, upperCase(b), 'USD'), 'avg_1h');
               };
 
               var dividerData = function dividerData(d, data) {
-                return getCurrencyData(get(data, upperCase(d), 'USD'), 'rates.last');
+                return getCurrencyData(get(data, upperCase(d), 'USD'), 'avg_1h');
               };
 
               var getReferencies = function getReferencies(response) {
