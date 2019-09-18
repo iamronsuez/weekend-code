@@ -60,7 +60,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "yarn build:client && yarn build:server",
+    "build": "npm run build:client && npm run build:server",
     "test": "node scripts/test.js",
     "build:client": "node scripts/build.js",
     "build:server": "NODE_ENV=development netlify-lambda build src/functions",

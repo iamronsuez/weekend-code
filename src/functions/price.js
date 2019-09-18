@@ -1,4 +1,4 @@
-const fetch = require('node-fetch')
+import fetch from 'node-fetch'
 const {get, upperCase, map} = require('lodash')
 
 const API_ENDPOINT = "https://localbitcoins.com/bitcoinaverage/ticker-all-currencies/"
@@ -29,7 +29,8 @@ exports.handler = async (event, context) => {
       const getReferencies = (response) =>  map(currencies, ({base, divider}) => ({
         rel: getRelation(baseData(base, response), baseData(divider, response)), 
         base: baseData(base, response), 
-        divider: baseData(divider, response)
+        divider: baseData(divider, response),
+        ref: `${base}/${divider}`
       }))
 
       try {
