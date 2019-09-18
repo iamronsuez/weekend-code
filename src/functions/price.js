@@ -1,5 +1,5 @@
-import fetch from 'node-fetch'
-import {get, upperCase, map} from 'lodash'
+const fetch = require('node-fetch')
+const {get, upperCase, map} = require('lodash')
 
 const API_ENDPOINT = "https://localbitcoins.com/bitcoinaverage/ticker-all-currencies/"
 
@@ -16,7 +16,7 @@ exports.handler = async (event, context) => {
       const currencies = [
         {base: 'VES', divider: 'CLP'},
         {base: 'CLP', divider: 'VES'},
-        {base: 'USD', divider: 'VES'},
+        {base: 'VES', divider: 'USD'},
         {base: 'USD', divider: 'CLP'},
         {base: 'PAB', divider: 'USD'},
         {base: 'PAB', divider: 'VES'},
@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
       const baseData =  (b, data) => getCurrencyData(get(data,upperCase(b), 'USD'), 'rates.last')
       const dividerData = (d, data) => getCurrencyData(get(data, upperCase(d), 'USD'),'rates.last')
 
-      const references = (response) =>  map(currencies, ({base, divider}) => ({
+      const getReferencies = (response) =>  map(currencies, ({base, divider}) => ({
         rel: getRelation(baseData(base, response), baseData(divider, response)), 
         base: baseData(base, response), 
         divider: baseData(divider, response)
@@ -35,6 +35,7 @@ exports.handler = async (event, context) => {
       try {
         return {
           statusCode: 200,
+          version: 1,
           body: JSON.stringify({
             currencies: {
               base: baseData(b, response),
