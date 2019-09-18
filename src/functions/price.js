@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
   const {base, divider} = event.queryStringParameters
   return fetch(API_ENDPOINT)
     .then(response => response.json())
-    .then(data => {
+    .then(response => {
       const currencies = [
         {base: 'VES', divider: 'CLP'},
         {base: 'CLP', divider: 'VES'},
@@ -22,17 +22,23 @@ exports.handler = async (event, context) => {
         {base: 'USD', divider: 'PAB'},
       ]
 
-      const baseData =  getCurrencyData(get(data,upperCase(base), 'USD'), 'rates.last')
-      const dividerData = getCurrencyData(get(data, upperCase(divider), 'USD'),'rates.last')
-      const references = map(currencies, ({base, divider}) => ({rel: getRelation(base, divider), base, divider}))
+      const baseData =  (b, data) => getCurrencyData(get(data,upperCase(base), 'USD'), 'rates.last')
+      const dividerData = (d, data) => getCurrencyData(get(data, upperCase(divider), 'USD'),'rates.last')
+
+      const references = map(currencies, ({base, divider}) => ({
+        rel: getRelation(baseData(base, response), baseData(divider, response)), 
+        base, 
+        divider
+      }))
+
       try {
         return {
           statusCode: 200,
           body: JSON.stringify({
             currencies: {
-              base: baseData,
-              divider: dividerData,
-              relation: getRelation(baseData, dividerData)
+              base: baseData(b, response),
+              divider: dividerData(d, response),
+              relation: getRelation(baseData(b, response), baseData(d, response))
             },
             references
           }, null, 2)
