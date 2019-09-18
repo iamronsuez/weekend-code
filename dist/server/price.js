@@ -19780,23 +19780,14 @@ function () {
                 base: 'VES',
                 divider: 'CLP'
               }, {
-                base: 'CLP',
-                divider: 'VES'
-              }, {
                 base: 'VES',
                 divider: 'USD'
               }, {
                 base: 'USD',
-                divider: 'CLP'
-              }, {
-                base: 'PAB',
-                divider: 'USD'
-              }, {
-                base: 'PAB',
-                divider: 'VES'
-              }, {
-                base: 'USD',
                 divider: 'PAB'
+              }, {
+                base: 'CLP',
+                divider: 'USD'
               }];
 
               var baseData = function baseData(b, data) {
@@ -19828,7 +19819,8 @@ function () {
                     currencies: {
                       base: baseData(b, response),
                       divider: dividerData(d, response),
-                      relation: getRelation(baseData(b, response), baseData(d, response))
+                      relation: getRelation(baseData(b, response), baseData(d, response)),
+                      ref: "".concat(b, "/").concat(d)
                     },
                     references: getReferencies(response)
                   }, null, 2)

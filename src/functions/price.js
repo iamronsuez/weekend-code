@@ -15,12 +15,9 @@ exports.handler = async (event, context) => {
     .then(response => {
       const currencies = [
         {base: 'VES', divider: 'CLP'},
-        {base: 'CLP', divider: 'VES'},
         {base: 'VES', divider: 'USD'},
-        {base: 'USD', divider: 'CLP'},
-        {base: 'PAB', divider: 'USD'},
-        {base: 'PAB', divider: 'VES'},
         {base: 'USD', divider: 'PAB'},
+        {base: 'CLP', divider: 'USD'},
       ]
 
       const baseData =  (b, data) => getCurrencyData(get(data,upperCase(b), 'USD'), 'avg_1h')
@@ -41,7 +38,8 @@ exports.handler = async (event, context) => {
             currencies: {
               base: baseData(b, response),
               divider: dividerData(d, response),
-              relation: getRelation(baseData(b, response), baseData(d, response))
+              relation: getRelation(baseData(b, response), baseData(d, response)),
+              ref: `${b}/${d}`
             },
             references: getReferencies(response)
           }, null, 2)
