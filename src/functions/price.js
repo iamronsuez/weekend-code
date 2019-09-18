@@ -8,8 +8,9 @@ const getCurrencyData = (data, path) => get(data, path, 0.0)
 const getRelation =(base, divider) => parseFloat(base) / parseFloat(divider)
 
 exports.handler = async (event, context) => {
-  const {base, divider} = event.queryStringParameters
-  return fetch(API_ENDPOINT)
+  const b = get(event.queryStringParameters, 'base', 'USD')
+  const d = get(event.queryStringParameters, 'divider', 'USD')
+    return fetch(API_ENDPOINT)
     .then(response => response.json())
     .then(response => {
       const currencies = [
