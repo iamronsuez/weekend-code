@@ -22,8 +22,8 @@ exports.handler = async (event, context) => {
         {base: 'USD', divider: 'PAB'},
       ]
 
-      const baseData =  (b, data) => getCurrencyData(get(data,upperCase(base), 'USD'), 'rates.last')
-      const dividerData = (d, data) => getCurrencyData(get(data, upperCase(divider), 'USD'),'rates.last')
+      const baseData =  (b, data) => getCurrencyData(get(data,upperCase(b), 'USD'), 'rates.last')
+      const dividerData = (d, data) => getCurrencyData(get(data, upperCase(d), 'USD'),'rates.last')
 
       const references = map(currencies, ({base, divider}) => ({
         rel: getRelation(baseData(base, response), baseData(divider, response)), 
