@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Chart} from 'react-google-charts';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 
 class ChartBox extends Component {
@@ -24,7 +24,7 @@ class ChartBox extends Component {
 
   _createChartData (data) {
     console.log(data)
-    const results = (data || []).map(({ts, rel}) => ([moment(ts).format('hh:mm'), rel]))
+    const results = (data || []).map(({ts, rel}) => ([moment.tz(ts, 'America/Santiago').format('HH:MM'), rel]))
 
     return [['time', 'price'], ...results]
   }
